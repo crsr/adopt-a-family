@@ -7,8 +7,10 @@
     "build": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/devBuild",
     "sass-lint": "sass-lint ./src --config .sass-lint.yml 'src/**/*.scss' --verbose --ignore 'node_modules/**/*'",
-    "server": "nodemon server/app.js",
-    "start": "concurrently --prefix \"[AAF]\" \"npm run watch-css\" \"npm run server\" \"react-scripts start\"",
+    "server": "node server/app.js",
+    "server:dev": "nodemon server/app.js",
+    "start": "npm run build && npm run server",
+    "start:dev": "concurrently --prefix \"[AAF]\" \"npm run watch-css\" \"npm run server:dev\" \"react-scripts start\"",
     "test": "eslint ./ && npm run sass-lint && react-scripts test --env=jsdom",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/devBuild/ --watch --recursive"
   },
